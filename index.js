@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const marked = require('marked');
 const moment = require('moment');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
