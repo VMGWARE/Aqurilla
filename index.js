@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
-  secret: process.env.SECRET, // Replace with your own secret key
+  secret: process.env.SESSION_SECRET, // Replace with your own secret key
   resave: true,
   saveUninitialized: true,
   cookie: {
@@ -105,13 +105,13 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/notifications', (req, res) => {
-    const currentUser = req.session.user;
-  res.render('notifications', { body: 'notifications', currentUser});
+  const currentUser = req.session.user;
+  res.render('notifications', { body: 'notifications', currentUser });
 });
 
 app.get('/messages', (req, res) => {
   const currentUser = req.session.user;
-  res.render('messages', { body: 'messages', currentUser});
+  res.render('messages', { body: 'messages', currentUser });
 });
 
 app.get('/login', (req, res) => {
