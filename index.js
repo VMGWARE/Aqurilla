@@ -134,7 +134,6 @@ app.get('/post', (req, res) => {
   res.render('post', { body: 'post', currentUser });
 });
 
-
 app.get('/profile/:id', (req, res) => {
   const profileId = req.params.id;
 
@@ -239,9 +238,6 @@ app.post('/settings', (req, res) => {
   });
 });
 
-
-
-// Signup route
 app.post('/signup', (req, res) => {
   const { name, email, password } = req.body;
 
@@ -269,11 +265,6 @@ app.post('/signup', (req, res) => {
   });
 });
 
-
-
-
-
-// Login route
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
@@ -338,12 +329,11 @@ app.post('/create-post', (req, res) => {
       return res.status(500).send('Internal Server Error');
     }
 
-    console.log('Post created successfully');
-    res.redirect('/profile'); // Redirect to the user's profile or any other desired destination
+    console.log(`Post ${results.insertId} created successfully`);
+    res.redirect('/profile/' + userId); // Redirect to the user's profile or any other desired destination
   });
 });
 
-// Handle comment submission
 app.post('/post/:postId/comment', (req, res) => {
   const postId = req.params.postId;
   const { comment } = req.body;
@@ -367,7 +357,6 @@ app.post('/post/:postId/comment', (req, res) => {
     res.redirect(`/`);
   });
 });
-
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
