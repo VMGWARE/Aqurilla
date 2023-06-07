@@ -26,5 +26,5 @@ pipeline:
     when:
       event: tag
 
-branches: [main]
+branches: [master]
 ignore_paths: [README.md, LICENSE, .github, .gitignore]
