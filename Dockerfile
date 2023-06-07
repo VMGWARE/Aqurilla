@@ -1,20 +1,20 @@
-# Use an official Node.js runtime as a parent image
-FROM node:14-alpine
+# Image: node:16-alpine
+FROM node:16-alpine
 
-# Set the working directory to /app
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+RUN npm ci --omit=dev
+# If you are building your code for development
+# RUN npm install
 
-# Copy the rest of the application code to the working directory
+# Bundle app source
 COPY . .
 
-# Expose port 3000 for the application to listen on
 EXPOSE 3000
-
-# Start the application
-CMD ["npm", "start"]
+CMD [ "node", "index.js" ]
