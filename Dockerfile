@@ -9,9 +9,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm ci --omit=dev
-# If you are building your code for development
-# RUN npm install
+RUN npm install
 
 # Bundle app source
 COPY . .
